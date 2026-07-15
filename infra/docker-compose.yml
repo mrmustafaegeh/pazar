@@ -1,0 +1,102 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pazaryeri-postgres
+    environment:
+      POSTGRES_USER: pazaryeri
+      POSTGRES_PASSWORD: pazaryeri
+      POSTGRES_DB: pazaryeri
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U pazaryeri']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: pazaryeri-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  opensearch:
+    image: opensearchproject/opensearch:2.18.0
+    container_name: pazaryeri-opensearch
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - '9200:9200'
+      - '9600:9600'
+    volumes:
+      - opensearch_data:/usr/share/opensearch/data
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:9200/_cluster/health || exit 1']
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  # Application services — uncomment when running full stack in Docker
+  # api:
+  #   build:
+  #     context: ..
+  #     dockerfile: apps/api/Dockerfile
+  #   ports:
+  #     - '4000:4000'
+  #   env_file: ../apps/api/.env
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #
+  # worker:
+  #   build:
+  #     context: ..
+  #     dockerfile: apps/api/Dockerfile
+  #   command: node dist/worker/main.js
+  #   env_file: ../apps/api/.env
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #
+  # web:
+  #   build:
+  #     context: ..
+  #     dockerfile: apps/web/Dockerfile
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - api
+  #
+  # admin:
+  #   build:
+  #     context: ..
+  #     dockerfile: apps/admin/Dockerfile
+  #   ports:
+  #     - '3001:3001'
+  #   depends_on:
+  #     - api
+
+volumes:
+  postgres_data:
+  redis_data:
+  opensearch_data:

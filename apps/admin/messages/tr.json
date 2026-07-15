@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "title": "Pazaryeri Admin",
+    "description": "Türkiye Pazaryeri yönetim paneli"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "search": "Ara",
+    "yes": "Evet",
+    "no": "Hayır",
+    "back": "Geri",
+    "next": "İleri",
+    "empty": "—",
+    "noLocation": "Konum yok",
+    "priceNotSet": "Fiyat belirtilmemiş",
+    "loadFailed": "Yüklenemedi"
+  },
+  "locale": {
+    "tr": "TR",
+    "en": "EN",
+    "ar": "AR",
+    "switch": "Dil"
+  },
+  "sidebar": {
+    "title": "Pazaryeri Admin",
+    "subtitle": "Yönetim paneli",
+    "overview": "Kontrol Paneli",
+    "listings": "İlanlar",
+    "users": "Kullanıcılar",
+    "categories": "Kategoriler",
+    "reports": "Raporlar",
+    "settings": "Ayarlar",
+    "logout": "Çıkış",
+    "collapse": "Daralt",
+    "expand": "Genişlet"
+  },
+  "header": {
+    "notifications": "Bildirimler",
+    "signedInAs": "Oturum açan",
+    "logout": "Çıkış"
+  },
+  "auth": {
+    "title": "Admin Girişi",
+    "subtitle": "Yönetim paneline erişim",
+    "email": "E-posta",
+    "password": "Şifre",
+    "login": "Giriş",
+    "verify": "Doğrula",
+    "twoFaPrompt": "2FA doğrulama kodu girin.",
+    "code": "Kod",
+    "notAdmin": "Bu hesap admin yetkisine sahip değil",
+    "loginFailed": "Giriş başarısız",
+    "twoFaFailed": "2FA doğrulaması başarısız",
+    "twoFaSessionExpired": "2FA oturumu süresi doldu. Tekrar giriş yapın ve yeni kodu 30 saniye içinde girin.",
+    "invalidTwoFaCode": "Geçersiz kod. Yeni kod üretin ve hemen tekrar deneyin.",
+    "twoFaDevHint": "Geliştirme: proje kök dizininden çalıştırın:",
+    "twoFaDevCommand": "pnpm --filter @turkiye-pazaryeri/api dev:2fa-code"
+  },
+  "validation": {
+    "generic": "Lütfen formu kontrol edip tekrar deneyin.",
+    "required": "Bu alan zorunludur.",
+    "invalid": "Geçersiz değer.",
+    "email": {
+      "invalid": "Geçerli bir e-posta adresi girin."
+    },
+    "password": {
+      "required": "Şifre gereklidir."
+    },
+    "twoFa": {
+      "length": "6 haneli doğrulama kodunu girin."
+    }
+  },
+  "errors": {
+    "apiConnection": "API bağlantısı kurulamadı. API sunucusunun çalıştığından emin olun.",
+    "apiGeneric": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "loginFailed": "E-posta veya şifre hatalı.",
+    "invalidTwoFaCode": "Doğrulama kodu geçersiz. Yeni kod üretin ve tekrar deneyin.",
+    "twoFaSessionExpired": "2FA oturumu süresi doldu. Tekrar giriş yapın ve yeni kodu 30 saniye içinde girin.",
+    "twoFaNotEnabled": "Bu hesap için 2FA etkin değil."
+  },
+  "dashboard": {
+    "title": "Kontrol Paneli",
+    "subtitle": "Platform durumu",
+    "users": "Kullanıcılar",
+    "usersVerified": "{count} telefon doğrulamalı",
+    "pendingListings": "İnceleme bekleyen",
+    "listingsToday": "Bugünkü ilanlar",
+    "submittedAwaiting": "İnceleme bekliyor",
+    "activeUsers": "Aktif kullanıcılar",
+    "flaggedItems": "Açık bildirimler",
+    "openSupport": "Açık destek",
+    "inProgressSupport": "{count} işlemde",
+    "liveListings": "Yayında ilan",
+    "listingStatuses": "İlan durum dağılımı",
+    "recentSubmissions": "Son gönderilen ilanlar",
+    "viewQueue": "Kuyruğu gör",
+    "needsReview": "İnceleme gerekli",
+    "allClear": "Bekleyen yok",
+    "needsAttention": "Dikkat gerekli",
+    "stable": "Stabil",
+    "statuses": {
+      "PENDING": "İncelemede",
+      "APPROVED": "Yayında",
+      "REJECTED": "Reddedildi",
+      "DRAFT": "Taslak",
+      "EXPIRED": "Süresi doldu"
+    }
+  },
+  "moderation": {
+    "title": "İlan moderasyon kuyruğu",
+    "pendingCount": "{count} bekleyen ilan",
+    "statusPending": "İncelemede",
+    "approve": "Onayla",
+    "reject": "Reddet",
+    "rejectReasonPlaceholder": "Red sebebi...",
+    "rejectReasonHint": "Red sebebini seçin. Satıcıya iletilecektir.",
+    "rejectReasonLabel": "Red sebebi",
+    "rejectNotePlaceholder": "Ek not (isteğe bağlı)",
+    "rejectReasons": {
+      "inappropriate": "Uygunsuz içerik",
+      "wrongCategory": "Yanlış kategori",
+      "duplicate": "Mükerrer ilan",
+      "missingInfo": "Eksik bilgi",
+      "fraud": "Dolandırıcılık şüphesi",
+      "other": "Diğer"
+    },
+    "imageCount": "{count} görsel",
+    "empty": "Bekleyen ilan yok.",
+    "searchPlaceholder": "Başlık veya satıcı ara...",
+    "filterCategory": "Kategoriye göre filtrele",
+    "allCategories": "Tüm kategoriler",
+    "colListing": "İlan",
+    "colCategory": "Kategori",
+    "colSeller": "Satıcı",
+    "colSubmitted": "Gönderim",
+    "colStatus": "Durum",
+    "colActions": "İşlemler",
+    "selectAll": "Tümünü seç",
+    "selectRow": "Satırı seç",
+    "bulkSelected": "{count} seçildi",
+    "bulkApprove": "Toplu onayla",
+    "bulkReject": "Toplu reddet",
+    "confirmApprove": "Bu ilan onaylansın mı?",
+    "confirmBulkApprove": "Seçili ilanlar onaylansın mı?",
+    "confirmBulkApproveDesc": "{count} ilan yayınlanacak.",
+    "confirmReject": "Bu ilan reddedilsin mi?",
+    "confirmBulkReject": "Seçili ilanlar reddedilsin mi?",
+    "pageOf": "Sayfa {page} / {total}",
+    "price": "Fiyat",
+    "location": "Konum",
+    "seller": "Satıcı",
+    "submitted": "Gönderim tarihi",
+    "description": "Açıklama",
+    "toastApproved": "İlan onaylandı",
+    "toastRejected": "İlan reddedildi"
+  },
+  "users": {
+    "title": "Kullanıcılar",
+    "subtitle": "Hesap yönetimi",
+    "searchPlaceholder": "E-posta veya telefon ara...",
+    "email": "E-posta",
+    "name": "Ad",
+    "contact": "İletişim",
+    "roles": "Roller",
+    "listings": "İlan",
+    "twoFa": "2FA",
+    "registered": "Kayıt tarihi",
+    "status": "Durum",
+    "statusActive": "Aktif",
+    "verified": "Doğrulanmış",
+    "actions": "İşlemler",
+    "viewProfile": "Profili gör",
+    "suspend": "Askıya al",
+    "confirmSuspend": "Bu hesap askıya alınsın mı?",
+    "confirmSuspendDesc": "Kullanıcı giriş yapamaz ve ilan veremez.",
+    "suspendJustification": "Admin panelinden askıya alındı",
+    "toastSuspended": "Hesap askıya alındı",
+    "empty": "Kullanıcı bulunamadı."
+  },
+  "categories": {
+    "title": "Kategoriler",
+    "subtitle": "İlan kategorilerini yönet",
+    "empty": "Kategori yönetimi yakında",
+    "emptyDesc": "Kategorileri ve özel alanları buradan düzenleyebileceksiniz."
+  },
+  "support": {
+    "title": "Destek talepleri",
+    "recordCount": "{count} kayıt",
+    "status": {
+      "OPEN": "Açık",
+      "IN_PROGRESS": "İşlemde",
+      "RESOLVED": "Çözüldü",
+      "CLOSED": "Kapalı"
+    },
+    "take": "Üstlen",
+    "resolved": "Çözüldü",
+    "close": "Kapat",
+    "approveKvkk": "KVKK silme talebini onayla",
+    "empty": "Destek talebi yok.",
+    "statusUpdateJustification": "Durum {status} olarak güncellendi"
+  },
+  "payments": {
+    "title": "Ödemeler",
+    "totalRecords": "Toplam {count} kayıt",
+    "date": "Tarih",
+    "user": "Kullanıcı",
+    "listing": "İlan",
+    "package": "Paket",
+    "amount": "Tutar",
+    "status": "Durum",
+    "empty": "Henüz ödeme kaydı yok."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Özellik bayrakları ve denetim kaydı",
+    "featureFlags": "Özellik bayrakları",
+    "enabled": "Açık",
+    "disabled": "Kapalı",
+    "flagsEmpty": "Süper admin yetkisi gerekli veya bayrak bulunamadı.",
+    "auditLog": "Denetim kaydı",
+    "action": "İşlem",
+    "target": "Hedef",
+    "admin": "Admin",
+    "date": "Tarih",
+    "auditEmpty": "Kayıt yok veya yetki yetersiz.",
+    "justificationPrompt": "Değişiklik gerekçesi:"
+  }
+}

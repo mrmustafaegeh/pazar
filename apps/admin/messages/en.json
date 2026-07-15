@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "title": "Marketplace Admin",
+    "description": "Turkey Marketplace management panel"
+  },
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "search": "Search",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "next": "Next",
+    "empty": "—",
+    "noLocation": "No location",
+    "priceNotSet": "Price not set",
+    "loadFailed": "Failed to load"
+  },
+  "locale": {
+    "tr": "TR",
+    "en": "EN",
+    "ar": "AR",
+    "switch": "Language"
+  },
+  "sidebar": {
+    "title": "Marketplace Admin",
+    "subtitle": "Management panel",
+    "overview": "Dashboard",
+    "listings": "Listings",
+    "users": "Users",
+    "categories": "Categories",
+    "reports": "Reports",
+    "settings": "Settings",
+    "logout": "Log out",
+    "collapse": "Collapse",
+    "expand": "Expand"
+  },
+  "header": {
+    "notifications": "Notifications",
+    "signedInAs": "Signed in as",
+    "logout": "Log out"
+  },
+  "auth": {
+    "title": "Admin Login",
+    "subtitle": "Access the management panel",
+    "email": "Email",
+    "password": "Password",
+    "login": "Sign in",
+    "verify": "Verify",
+    "twoFaPrompt": "Enter your 2FA verification code.",
+    "code": "Code",
+    "notAdmin": "This account does not have admin privileges",
+    "loginFailed": "Login failed",
+    "twoFaFailed": "2FA verification failed",
+    "twoFaSessionExpired": "2FA session expired. Sign in again and enter a fresh code within 30 seconds.",
+    "invalidTwoFaCode": "Invalid code. Generate a new one and try again immediately.",
+    "twoFaDevHint": "Dev: run from project root:",
+    "twoFaDevCommand": "pnpm --filter @turkiye-pazaryeri/api dev:2fa-code"
+  },
+  "validation": {
+    "generic": "Please check the form and try again.",
+    "required": "This field is required.",
+    "invalid": "Invalid value.",
+    "email": {
+      "invalid": "Enter a valid email address."
+    },
+    "password": {
+      "required": "Password is required."
+    },
+    "twoFa": {
+      "length": "Enter the 6-digit verification code."
+    }
+  },
+  "errors": {
+    "apiConnection": "Could not connect to the API. Make sure the API server is running.",
+    "apiGeneric": "Something went wrong. Please try again.",
+    "loginFailed": "Invalid email or password.",
+    "invalidTwoFaCode": "Invalid verification code. Generate a new code and try again.",
+    "twoFaSessionExpired": "2FA session expired. Sign in again and enter a fresh code within 30 seconds.",
+    "twoFaNotEnabled": "2FA is not enabled for this account."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Platform status",
+    "users": "Users",
+    "usersVerified": "{count} phone verified",
+    "pendingListings": "Pending review",
+    "listingsToday": "Listings today",
+    "submittedAwaiting": "Submitted, awaiting review",
+    "activeUsers": "Active users",
+    "flaggedItems": "Open reports",
+    "openSupport": "Open support",
+    "inProgressSupport": "{count} in progress",
+    "liveListings": "Live listings",
+    "listingStatuses": "Listing status breakdown",
+    "recentSubmissions": "Recent submissions",
+    "viewQueue": "View queue",
+    "needsReview": "Needs review",
+    "allClear": "All clear",
+    "needsAttention": "Needs attention",
+    "stable": "Stable",
+    "statuses": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "DRAFT": "Draft",
+      "EXPIRED": "Expired"
+    }
+  },
+  "moderation": {
+    "title": "Listing moderation queue",
+    "pendingCount": "{count} pending listings",
+    "statusPending": "Pending review",
+    "approve": "Approve",
+    "reject": "Reject",
+    "rejectReasonPlaceholder": "Rejection reason...",
+    "rejectReasonHint": "Select a rejection reason. It will be sent to the seller.",
+    "rejectReasonLabel": "Rejection reason",
+    "rejectNotePlaceholder": "Additional notes (optional)",
+    "rejectReasons": {
+      "inappropriate": "Inappropriate content",
+      "wrongCategory": "Wrong category",
+      "duplicate": "Duplicate listing",
+      "missingInfo": "Missing information",
+      "fraud": "Suspected fraud",
+      "other": "Other"
+    },
+    "imageCount": "{count} images",
+    "empty": "No pending listings.",
+    "searchPlaceholder": "Search by title or seller...",
+    "filterCategory": "Filter by category",
+    "allCategories": "All categories",
+    "colListing": "Listing",
+    "colCategory": "Category",
+    "colSeller": "Seller",
+    "colSubmitted": "Submitted",
+    "colStatus": "Status",
+    "colActions": "Actions",
+    "selectAll": "Select all",
+    "selectRow": "Select row",
+    "bulkSelected": "{count} selected",
+    "bulkApprove": "Bulk approve",
+    "bulkReject": "Bulk reject",
+    "confirmApprove": "Approve this listing?",
+    "confirmBulkApprove": "Approve selected listings?",
+    "confirmBulkApproveDesc": "{count} listings will be published.",
+    "confirmReject": "Reject this listing?",
+    "confirmBulkReject": "Reject selected listings?",
+    "pageOf": "Page {page} of {total}",
+    "price": "Price",
+    "location": "Location",
+    "seller": "Seller",
+    "submitted": "Submitted",
+    "description": "Description",
+    "toastApproved": "Listing approved",
+    "toastRejected": "Listing rejected"
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Account management",
+    "searchPlaceholder": "Search email or phone...",
+    "email": "Email",
+    "name": "Name",
+    "contact": "Contact",
+    "roles": "Roles",
+    "listings": "Listings",
+    "twoFa": "2FA",
+    "registered": "Joined",
+    "status": "Status",
+    "statusActive": "Active",
+    "verified": "Verified",
+    "actions": "Actions",
+    "viewProfile": "View profile",
+    "suspend": "Suspend",
+    "confirmSuspend": "Suspend this account?",
+    "confirmSuspendDesc": "The user will not be able to log in or post listings.",
+    "suspendJustification": "Suspended from admin panel",
+    "toastSuspended": "Account suspended",
+    "empty": "No users found."
+  },
+  "categories": {
+    "title": "Categories",
+    "subtitle": "Manage listing categories",
+    "empty": "Category management coming soon",
+    "emptyDesc": "You will be able to edit categories and custom fields here."
+  },
+  "support": {
+    "title": "Support tickets",
+    "recordCount": "{count} records",
+    "status": {
+      "OPEN": "Open",
+      "IN_PROGRESS": "In progress",
+      "RESOLVED": "Resolved",
+      "CLOSED": "Closed"
+    },
+    "take": "Take",
+    "resolved": "Resolved",
+    "close": "Close",
+    "approveKvkk": "Approve GDPR deletion request",
+    "empty": "No support tickets.",
+    "statusUpdateJustification": "Status updated to {status}"
+  },
+  "payments": {
+    "title": "Payments",
+    "totalRecords": "{count} total records",
+    "date": "Date",
+    "user": "User",
+    "listing": "Listing",
+    "package": "Package",
+    "amount": "Amount",
+    "status": "Status",
+    "empty": "No payment records yet."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Feature flags and audit log",
+    "featureFlags": "Feature flags",
+    "enabled": "On",
+    "disabled": "Off",
+    "flagsEmpty": "Super admin access required or no flags found.",
+    "auditLog": "Audit log",
+    "action": "Action",
+    "target": "Target",
+    "admin": "Admin",
+    "date": "Date",
+    "auditEmpty": "No records or insufficient permissions.",
+    "justificationPrompt": "Reason for change:"
+  }
+}

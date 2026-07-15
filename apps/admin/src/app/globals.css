@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-navy: #12294b;
+  --color-primary: #12294b;
+  --color-on-primary: #ffffff;
+  --color-accent: #e8a33d;
+  --color-success: #1f9d55;
+  --color-background: #f9fafb;
+  --color-foreground: #111827;
+  --color-muted: #f3f4f6;
+  --color-border: #e5e7eb;
+  --color-destructive: #dc2626;
+  --color-ring: #12294b;
+  --color-surface: #ffffff;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
+}
+
+@layer base {
+  html[lang='ar'] {
+    --font-heading: var(--font-arabic);
+    --font-body: var(--font-arabic);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  .admin-card {
+    @apply rounded-lg border border-border bg-surface p-4 md:p-5;
+  }
+
+  .admin-table {
+    @apply min-w-full text-sm;
+  }
+
+  .admin-table thead th {
+    @apply sticky top-0 z-10 border-b border-border bg-muted/80 px-4 py-3 text-start text-xs font-semibold uppercase tracking-wide text-neutral-500 backdrop-blur-sm;
+  }
+
+  .admin-table tbody td {
+    @apply border-b border-border px-4 py-3;
+  }
+
+  .admin-table tbody tr {
+    @apply transition-colors hover:bg-muted/60;
+  }
+
+  .btn-primary {
+    @apply cursor-pointer rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-navy/90 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-success {
+    @apply cursor-pointer rounded-lg bg-success px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-success/90 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-danger-outline {
+    @apply cursor-pointer rounded-lg border border-destructive px-4 py-2 text-sm font-semibold text-destructive transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply cursor-pointer rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground transition-colors focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/15;
+  }
+
+  .select-field {
+    @apply rounded-lg border border-border bg-surface px-3 py-2 text-sm text-foreground focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/15;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-end {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-end {
+  animation: slide-in-end 0.25s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

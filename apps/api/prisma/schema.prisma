@@ -1,0 +1,414 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum Role {
+  USER
+  MODERATOR
+  SUPPORT
+  FINANCE
+  SUPER_ADMIN
+}
+
+enum ListingImageStatus {
+  QUARANTINE
+  PROCESSING
+  PUBLISHED
+  FAILED
+}
+
+enum ListingStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+enum PricingTier {
+  FREE
+  STANDARD
+  PREMIUM
+  DEALER
+}
+
+enum PaymentStatus {
+  UNPAID
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentRecordStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum ModerationActionType {
+  APPROVE
+  REJECT
+  FLAG
+  UNFLAG
+}
+
+enum TicketType {
+  LISTING_REPORT
+  USER_COMPLAINT
+  SUPPORT_REQUEST
+  DATA_REQUEST
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum NotificationChannel {
+  EMAIL
+  SMS
+  PUSH
+  IN_APP
+}
+
+enum NotificationStatus {
+  SENT
+  FAILED
+  SKIPPED
+}
+
+// ─── Users & Auth ────────────────────────────────────────────────────────────
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  passwordHash    String
+  phone           String?
+  phoneVerifiedAt DateTime?
+  roles           Role[]    @default([USER])
+  totpSecret      String?
+  totpEnabled     Boolean   @default(false)
+  deletedAt       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  refreshTokens    RefreshToken[]
+  phoneOtps        PhoneOtp[]
+  listings         Listing[]
+  moderationActions ModerationAction[] @relation("ModeratorActions")
+  adminAuditLogs   AdminAuditLog[]
+  payments         Payment[]
+  ticketsCreated   Ticket[]           @relation("TicketCreator")
+  ticketsAssigned  Ticket[]           @relation("TicketAssignee")
+  ticketsReported    Ticket[]           @relation("ReportedUserTickets")
+  notificationLogs NotificationLog[]
+  buyerConversations  Conversation[]  @relation("BuyerConversations")
+  sellerConversations Conversation[]  @relation("SellerConversations")
+  messagesSent     Message[]
+
+  @@index([phone])
+  @@index([deletedAt])
+}
+
+model RefreshToken {
+  id                String    @id @default(cuid())
+  tokenHash         String    @unique
+  familyId          String
+  userId            String
+  expiresAt         DateTime
+  revokedAt         DateTime?
+  replacedByTokenId String?
+  createdAt         DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([familyId])
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model PhoneOtp {
+  id         String    @id @default(cuid())
+  userId     String
+  phone      String
+  codeHash   String
+  expiresAt  DateTime
+  verifiedAt DateTime?
+  attempts   Int       @default(0)
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, phone])
+  @@index([expiresAt])
+}
+
+// ─── Categories & Listings ───────────────────────────────────────────────────
+
+model Category {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  name            String
+  nameEn          String?
+  attributeSchema Json      @default("{}")
+  parentId        String?
+  sortOrder       Int       @default(0)
+  deletedAt       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryTree")
+  listings Listing[]
+
+  @@index([parentId])
+  @@index([deletedAt])
+}
+
+model Listing {
+  id            String        @id @default(cuid())
+  userId        String
+  categoryId    String
+  title         String
+  description   String
+  slug          String        @unique
+  attributes    Json          @default("{}")
+  status        ListingStatus @default(DRAFT)
+  pricingTier   PricingTier   @default(FREE)
+  paymentStatus PaymentStatus @default(UNPAID)
+  price         Decimal?      @db.Decimal(12, 2)
+  currency      String        @default("TRY")
+  city          String?
+  district      String?
+  deletedAt     DateTime?
+  publishedAt   DateTime?
+  expiresAt     DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user              User               @relation(fields: [userId], references: [id])
+  category          Category           @relation(fields: [categoryId], references: [id])
+  moderationActions ModerationAction[]
+  payments          Payment[]
+  images            ListingImage[]
+  conversations     Conversation[]
+  tickets           Ticket[]
+
+  @@index([userId])
+  @@index([categoryId])
+  @@index([status])
+  @@index([deletedAt])
+  @@index([publishedAt])
+}
+
+model ListingImage {
+  id            String             @id @default(cuid())
+  listingId     String
+  status        ListingImageStatus @default(QUARANTINE)
+  sortOrder     Int                @default(0)
+  quarantineKey String
+  publicKey     String?
+  mimeType      String?
+  width         Int?
+  height        Int?
+  deletedAt     DateTime?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  listing Listing @relation(fields: [listingId], references: [id])
+
+  @@index([listingId])
+  @@index([status])
+  @@index([deletedAt])
+}
+
+// ─── Payments (dormant at launch) ────────────────────────────────────────────
+
+model Payment {
+  id             String              @id @default(cuid())
+  userId         String
+  listingId      String?
+  amount         Decimal             @db.Decimal(12, 2)
+  currency       String              @default("TRY")
+  status         PaymentRecordStatus @default(PENDING)
+  idempotencyKey String              @unique
+  providerRef    String?             @unique
+  metadata       Json                @default("{}")
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  user    User     @relation(fields: [userId], references: [id])
+  listing Listing? @relation(fields: [listingId], references: [id])
+
+  @@index([userId])
+  @@index([listingId])
+}
+
+// ─── Moderation (append-only) ────────────────────────────────────────────────
+
+model ModerationAction {
+  id          String               @id @default(cuid())
+  listingId   String
+  moderatorId String
+  action      ModerationActionType
+  reason      String?
+  metadata    Json                 @default("{}")
+  createdAt   DateTime             @default(now())
+
+  listing   Listing @relation(fields: [listingId], references: [id])
+  moderator User    @relation("ModeratorActions", fields: [moderatorId], references: [id])
+
+  @@index([listingId])
+  @@index([moderatorId])
+  @@index([createdAt])
+}
+
+// ─── Admin audit (append-only) ───────────────────────────────────────────────
+
+model AdminAuditLog {
+  id            String   @id @default(cuid())
+  adminId       String
+  action        String
+  targetType    String
+  targetId      String
+  justification String
+  metadata      Json     @default("{}")
+  createdAt     DateTime @default(now())
+
+  admin User @relation(fields: [adminId], references: [id])
+
+  @@index([adminId])
+  @@index([targetType, targetId])
+  @@index([createdAt])
+}
+
+// ─── Complaints / Tickets ────────────────────────────────────────────────────
+
+model Ticket {
+  id             String         @id @default(cuid())
+  type           TicketType
+  status         TicketStatus   @default(OPEN)
+  priority       TicketPriority @default(MEDIUM)
+  subject        String
+  body           String
+  creatorId      String
+  assigneeId     String?
+  listingId      String?
+  reportedUserId String?
+  metadata       Json           @default("{}")
+  slaDeadline    DateTime?
+  resolvedAt     DateTime?
+  deletedAt      DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  creator      User     @relation("TicketCreator", fields: [creatorId], references: [id])
+  assignee     User?    @relation("TicketAssignee", fields: [assigneeId], references: [id])
+  listing      Listing? @relation(fields: [listingId], references: [id])
+  reportedUser User?    @relation("ReportedUserTickets", fields: [reportedUserId], references: [id])
+
+  @@index([status])
+  @@index([assigneeId])
+  @@index([creatorId])
+  @@index([listingId])
+  @@index([deletedAt])
+}
+
+// ─── Notification dispatch log ───────────────────────────────────────────────
+
+model NotificationLog {
+  id        String              @id @default(cuid())
+  userId    String?
+  channel   NotificationChannel
+  eventType String
+  recipient String
+  status    NotificationStatus
+  payload   Json                @default("{}")
+  error     String?
+  createdAt DateTime            @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
+// ─── Messaging ───────────────────────────────────────────────────────────────
+
+model Conversation {
+  id        String    @id @default(cuid())
+  listingId String?
+  buyerId   String
+  sellerId  String
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  listing  Listing?  @relation(fields: [listingId], references: [id])
+  buyer    User      @relation("BuyerConversations", fields: [buyerId], references: [id])
+  seller   User      @relation("SellerConversations", fields: [sellerId], references: [id])
+  messages Message[]
+
+  @@index([buyerId])
+  @@index([sellerId])
+  @@index([listingId])
+}
+
+model Message {
+  id             String    @id @default(cuid())
+  conversationId String
+  senderId       String
+  body           String
+  readAt         DateTime?
+  createdAt      DateTime  @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id])
+  sender       User         @relation(fields: [senderId], references: [id])
+
+  @@index([conversationId, createdAt])
+}
+
+// ─── Transactional outbox ────────────────────────────────────────────────────
+
+model Outbox {
+  id            String    @id @default(cuid())
+  aggregateType String
+  aggregateId   String
+  eventType     String
+  payload       Json
+  createdAt     DateTime  @default(now())
+  dispatchedAt  DateTime?
+
+  @@index([dispatchedAt, createdAt])
+  @@index([aggregateType, aggregateId])
+}
+
+// ─── Feature flags (data, not env vars) ──────────────────────────────────────
+
+model FeatureFlag {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  enabled     Boolean  @default(false)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

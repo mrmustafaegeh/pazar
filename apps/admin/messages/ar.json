@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "title": "إدارة السوق",
+    "description": "لوحة إدارة سوق تركيا"
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "search": "بحث",
+    "yes": "نعم",
+    "no": "لا",
+    "back": "رجوع",
+    "next": "التالي",
+    "empty": "—",
+    "noLocation": "لا يوجد موقع",
+    "priceNotSet": "السعر غير محدد",
+    "loadFailed": "تعذر التحميل"
+  },
+  "locale": {
+    "tr": "TR",
+    "en": "EN",
+    "ar": "AR",
+    "switch": "اللغة"
+  },
+  "sidebar": {
+    "title": "إدارة السوق",
+    "subtitle": "لوحة الإدارة",
+    "overview": "لوحة التحكم",
+    "listings": "الإعلانات",
+    "users": "المستخدمون",
+    "categories": "الفئات",
+    "reports": "التقارير",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "collapse": "طي القائمة",
+    "expand": "توسيع القائمة"
+  },
+  "header": {
+    "notifications": "الإشعارات",
+    "signedInAs": "مسجّل الدخول كـ",
+    "logout": "تسجيل الخروج"
+  },
+  "auth": {
+    "title": "تسجيل دخول المشرف",
+    "subtitle": "الوصول إلى لوحة الإدارة",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول",
+    "verify": "تحقق",
+    "twoFaPrompt": "أدخل رمز التحقق الثنائي.",
+    "code": "الرمز",
+    "notAdmin": "هذا الحساب لا يملك صلاحيات المشرف",
+    "loginFailed": "فشل تسجيل الدخول",
+    "twoFaFailed": "فشل التحقق الثنائي",
+    "twoFaSessionExpired": "انتهت صلاحية جلسة التحقق الثنائي. سجّل الدخول مجددًا وأدخل رمزًا جديدًا خلال 30 ثانية.",
+    "invalidTwoFaCode": "رمز غير صالح. أنشئ رمزًا جديدًا وحاول فورًا.",
+    "twoFaDevHint": "للتطوير: نفّذ من جذر المشروع:",
+    "twoFaDevCommand": "pnpm --filter @turkiye-pazaryeri/api dev:2fa-code"
+  },
+  "validation": {
+    "generic": "يرجى التحقق من النموذج والمحاولة مرة أخرى.",
+    "required": "هذا الحقل مطلوب.",
+    "invalid": "قيمة غير صالحة.",
+    "email": {
+      "invalid": "أدخل بريدًا إلكترونيًا صالحًا."
+    },
+    "password": {
+      "required": "كلمة المرور مطلوبة."
+    },
+    "twoFa": {
+      "length": "أدخل رمز التحقق المكوّن من 6 أرقام."
+    }
+  },
+  "errors": {
+    "apiConnection": "تعذر الاتصال بـ API. تأكد من تشغيل خادم API.",
+    "apiGeneric": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "loginFailed": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "invalidTwoFaCode": "رمز التحقق غير صالح. أنشئ رمزًا جديدًا وحاول مرة أخرى.",
+    "twoFaSessionExpired": "انتهت صلاحية جلسة التحقق الثنائي. سجّل الدخول مجددًا وأدخل رمزًا جديدًا خلال 30 ثانية.",
+    "twoFaNotEnabled": "التحقق الثنائي غير مفعّل لهذا الحساب."
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "subtitle": "حالة المنصة",
+    "users": "المستخدمون",
+    "usersVerified": "{count} تم التحقق من الهاتف",
+    "pendingListings": "قيد المراجعة",
+    "listingsToday": "إعلانات اليوم",
+    "submittedAwaiting": "مقدّمة بانتظار المراجعة",
+    "activeUsers": "المستخدمون النشطون",
+    "flaggedItems": "بلاغات مفتوحة",
+    "openSupport": "دعم مفتوح",
+    "inProgressSupport": "{count} قيد المعالجة",
+    "liveListings": "إعلانات منشورة",
+    "listingStatuses": "توزيع حالات الإعلانات",
+    "recentSubmissions": "آخر الإعلانات المقدّمة",
+    "viewQueue": "عرض القائمة",
+    "needsReview": "يحتاج مراجعة",
+    "allClear": "لا شيء معلّق",
+    "needsAttention": "يحتاج اهتمام",
+    "stable": "مستقر",
+    "statuses": {
+      "PENDING": "قيد المراجعة",
+      "APPROVED": "منشور",
+      "REJECTED": "مرفوض",
+      "DRAFT": "مسودة",
+      "EXPIRED": "منتهي"
+    }
+  },
+  "moderation": {
+    "title": "قائمة مراجعة الإعلانات",
+    "pendingCount": "{count} إعلان معلق",
+    "statusPending": "قيد المراجعة",
+    "approve": "موافقة",
+    "reject": "رفض",
+    "rejectReasonPlaceholder": "سبب الرفض...",
+    "rejectReasonHint": "اختر سببًا للرفض. سيُرسل للبائع.",
+    "rejectReasonLabel": "سبب الرفض",
+    "rejectNotePlaceholder": "ملاحظات إضافية (اختياري)",
+    "rejectReasons": {
+      "inappropriate": "محتوى غير لائق",
+      "wrongCategory": "فئة خاطئة",
+      "duplicate": "إعلان مكرر",
+      "missingInfo": "معلومات ناقصة",
+      "fraud": "اشتباه احتيال",
+      "other": "سبب آخر"
+    },
+    "imageCount": "{count} صور",
+    "empty": "لا توجد إعلانات معلقة.",
+    "searchPlaceholder": "ابحث بالعنوان أو البائع...",
+    "filterCategory": "تصفية حسب الفئة",
+    "allCategories": "كل الفئات",
+    "colListing": "الإعلان",
+    "colCategory": "الفئة",
+    "colSeller": "البائع",
+    "colSubmitted": "تاريخ التقديم",
+    "colStatus": "الحالة",
+    "colActions": "إجراءات",
+    "selectAll": "تحديد الكل",
+    "selectRow": "تحديد الصف",
+    "bulkSelected": "تم تحديد {count}",
+    "bulkApprove": "موافقة جماعية",
+    "bulkReject": "رفض جماعي",
+    "confirmApprove": "الموافقة على هذا الإعلان؟",
+    "confirmBulkApprove": "الموافقة على الإعلانات المحددة؟",
+    "confirmBulkApproveDesc": "سيتم نشر {count} إعلان.",
+    "confirmReject": "رفض هذا الإعلان؟",
+    "confirmBulkReject": "رفض الإعلانات المحددة؟",
+    "pageOf": "صفحة {page} من {total}",
+    "price": "السعر",
+    "location": "الموقع",
+    "seller": "البائع",
+    "submitted": "تاريخ التقديم",
+    "description": "الوصف",
+    "toastApproved": "تمت الموافقة على الإعلان",
+    "toastRejected": "تم رفض الإعلان"
+  },
+  "users": {
+    "title": "المستخدمون",
+    "subtitle": "إدارة الحسابات",
+    "searchPlaceholder": "ابحث بالبريد أو الهاتف...",
+    "email": "البريد الإلكتروني",
+    "name": "الاسم",
+    "contact": "التواصل",
+    "roles": "الأدوار",
+    "listings": "الإعلانات",
+    "twoFa": "التحقق الثنائي",
+    "registered": "تاريخ التسجيل",
+    "status": "الحالة",
+    "statusActive": "نشط",
+    "verified": "موثّق",
+    "actions": "إجراءات",
+    "viewProfile": "عرض الملف",
+    "suspend": "تعليق",
+    "confirmSuspend": "تعليق هذا الحساب؟",
+    "confirmSuspendDesc": "لن يتمكن المستخدم من تسجيل الدخول أو نشر إعلانات.",
+    "suspendJustification": "تعليق من لوحة الإدارة",
+    "toastSuspended": "تم تعليق الحساب",
+    "empty": "لا يوجد مستخدمون."
+  },
+  "categories": {
+    "title": "الفئات",
+    "subtitle": "إدارة فئات الإعلانات",
+    "empty": "إدارة الفئات قريبًا",
+    "emptyDesc": "ستتمكن من تعديل الفئات والحقول المخصصة من هنا."
+  },
+  "support": {
+    "title": "طلبات الدعم",
+    "recordCount": "{count} سجل",
+    "status": {
+      "OPEN": "مفتوح",
+      "IN_PROGRESS": "قيد المعالجة",
+      "RESOLVED": "تم الحل",
+      "CLOSED": "مغلق"
+    },
+    "take": "استلام",
+    "resolved": "تم الحل",
+    "close": "إغلاق",
+    "approveKvkk": "الموافقة على طلب حذف البيانات",
+    "empty": "لا توجد طلبات دعم.",
+    "statusUpdateJustification": "تم تحديث الحالة إلى {status}"
+  },
+  "payments": {
+    "title": "المدفوعات",
+    "totalRecords": "{count} سجل إجمالي",
+    "date": "التاريخ",
+    "user": "المستخدم",
+    "listing": "الإعلان",
+    "package": "الباقة",
+    "amount": "المبلغ",
+    "status": "الحالة",
+    "empty": "لا توجد سجلات مدفوعات بعد."
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "subtitle": "أعلام الميزات وسجل التدقيق",
+    "featureFlags": "أعلام الميزات",
+    "enabled": "مفعّل",
+    "disabled": "معطّل",
+    "flagsEmpty": "مطلوب صلاحية المشرف الأعلى أو لم يتم العثور على أعلام.",
+    "auditLog": "سجل التدقيق",
+    "action": "الإجراء",
+    "target": "الهدف",
+    "admin": "المشرف",
+    "date": "التاريخ",
+    "auditEmpty": "لا توجد سجلات أو الصلاحيات غير كافية.",
+    "justificationPrompt": "سبب التغيير:"
+  }
+}

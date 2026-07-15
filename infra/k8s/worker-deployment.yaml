@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pazaryeri-worker
+  labels:
+    app: pazaryeri-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pazaryeri-worker
+  template:
+    metadata:
+      labels:
+        app: pazaryeri-worker
+    spec:
+      containers:
+        - name: worker
+          image: pazaryeri/api:latest
+          command: ['node', 'dist/worker/main.js']
+          envFrom:
+            - secretRef:
+                name: pazaryeri-api-secrets
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi

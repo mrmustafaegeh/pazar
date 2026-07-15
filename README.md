@@ -1,4 +1,4 @@
-# Türkiye Pazaryeri
+# Türkiye Pazaryeri (pazar)
 
 Multi-vendor classifieds marketplace for the Turkish market — modeled on haraj.com.sa and sahibinden.com.
 

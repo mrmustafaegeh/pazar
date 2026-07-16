@@ -6,7 +6,7 @@ export const envSchema = z.object({
   API_VERSION: z.coerce.number().default(1),
   DATABASE_URL: z.string().url(),
   REDIS_URL: z.string().url(),
-  OPENSEARCH_URL: z.string().url(),
+  OPENSEARCH_URL: z.string().url().optional(),
   JWT_ACCESS_SECRET: z.string().min(32),
   JWT_REFRESH_SECRET: z.string().min(32),
   JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),

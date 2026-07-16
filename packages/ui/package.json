@@ -11,11 +11,11 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -f tsconfig.tsbuildinfo && tsc",
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --max-warnings 0",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
   },
   "peerDependencies": {
     "react": "^19.0.0",

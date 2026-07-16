@@ -4,6 +4,8 @@
 
 Available in **Turkish**, **English**, and **Arabic**, with prices shown in **TRY**, **USD**, or **EUR**.
 
+> **Developers:** see [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for how to run the stack, performance tips, and a full build log.
+
 ---
 
 ## What you can do
